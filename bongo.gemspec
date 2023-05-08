@@ -1,4 +1,4 @@
-$:.push File.expand_path("lib", __dir__)
+$LOAD_PATH.push File.expand_path("lib", __dir__)
 
 require "bongo/version"
 
@@ -14,9 +14,11 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_runtime_dependency "rails", "~> 6.0.3"
-  spec.add_runtime_dependency "mongoid", "~> 7.0.5"
-  spec.add_runtime_dependency "mongoid-slug", ">= 6"
   spec.add_runtime_dependency "aws-sdk-s3", "~> 1"
+  spec.add_runtime_dependency "mongoid", ">= 7.0.5", "<= 8.0.2"
+  spec.add_runtime_dependency "mongoid-slug", ">= 6.0"
   spec.add_runtime_dependency "pundit", "~> 2.1"
+  spec.add_runtime_dependency "rails", ">= 6.0.3", "<= 7.0.4"
+  spec.add_runtime_dependency "rubocop"
+  spec.add_runtime_dependency "rubocop-rails"
 end
