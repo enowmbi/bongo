@@ -2,9 +2,9 @@ require_dependency "bongo/application_controller"
 
 module Bongo
   class ArticlesController < ApplicationController
-    before_action :authenticate_user!, except: [:index, :show]
+    before_action :authenticate_user!, except: %i[index show]
 
-    before_action :set_article, only: [:show, :edit, :update, :destroy]
+    before_action :set_article, only: %i[show edit update destroy]
 
     def index
       @articles = policy_scope(Article).published.order(publish_at: :desc)
@@ -58,12 +58,13 @@ module Bongo
     end
 
     private
-      def set_article
-        @article = Article.find(params[:id])
-      end
 
-      def article_params
-        params.require(:article).permit(:title, :text, :publish_at)
-      end
+    def set_article
+      @article = Article.find(params[:id])
+    end
+
+    def article_params
+      params.require(:article).permit(:title, :text, :publish_at)
+    end
   end
 end

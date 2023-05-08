@@ -16,11 +16,9 @@ module Bongo
     # This causes https://jira.mongodb.org/browse/MONGOID-4680 when trying to
     # use Rails collection caching.
     def cache_version
-      if respond_to?(:updated_at)
-        updated_at.utc.to_s(:usec)
-      else
-        nil
-      end
+      return unless respond_to?(:updated_at)
+
+      updated_at.utc.to_s(:usec)
     end
   end
 end

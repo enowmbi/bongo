@@ -1,8 +1,16 @@
 xml.instruct! :xml, version: "1.0"
 xml.rss version: "2.0" do
   xml.channel do
-    xml.title (Front.config.name rescue "My Blog")
-    xml.description (Front.config.description rescue "A bongo blog")
+    xml.titlebegin
+                Front.config.name
+              rescue
+                "My Blog"
+              end
+    xml.descriptionbegin
+                      Front.config.description
+                    rescue
+                      "A bongo blog"
+                    end
     xml.link root_url
 
     @articles.each do |article|
